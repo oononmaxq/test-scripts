@@ -1,0 +1,26 @@
+{
+  "name": "nextjs-code-reviewer",
+  "version": "1.0.0",
+  "description": "Automated code reviewer for Next.js projects",
+  "main": "nextjs-code-reviewer.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "review": "tsx nextjs-code-reviewer.ts",
+    "review:main": "tsx nextjs-code-reviewer.ts main"
+  },
+  "bin": {
+    "nextjs-review": "./nextjs-code-reviewer.js"
+  },
+  "dependencies": {
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/eslint": "^8.0.0",
+    "tsx": "^4.0.0"
+  }
+}
