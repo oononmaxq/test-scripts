@@ -49,23 +49,23 @@ tsx nextjs-code-reviewer.ts main  # 任意のブランチと比較
 ### 特定のプロジェクトをレビュー
 ```bash
 # 特定のプロジェクトをdevelopと比較
-tsx nextjs-code-reviewer.ts /Users/oono/projects/cyber-academia-kids
+tsx nextjs-code-reviewer.ts /path/to/your/project
 
 # 相対パスも使用可能
-tsx nextjs-code-reviewer.ts ../cyber-academia-kids
+tsx nextjs-code-reviewer.ts ../your-project
 
 # 特定のプロジェクトを指定ブランチと比較
-tsx nextjs-code-reviewer.ts /Users/oono/projects/cyber-academia-kids main
+tsx nextjs-code-reviewer.ts /path/to/your/project main
 ```
 
 ### グローバルインストール（推奨）
 ```bash
 # グローバルインストール
-cd /Users/oono/projects/test-scripts
+cd path/to/nextjs-code-reviewer
 npm install -g .
 
 # 任意の場所から実行
-cd /Users/oono/projects/cyber-academia-kids
+cd /path/to/your/project
 nextjs-review  # developと比較
 nextjs-review main  # mainと比較
 ```

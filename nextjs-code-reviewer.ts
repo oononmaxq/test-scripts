@@ -391,7 +391,7 @@ class NextJSCodeReviewer {
 
   private generateReport(): void {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '').substring(0, 15);
-    const resultDir = path.join('/Users/oono/projects/test-scripts', 'result');
+    const resultDir = path.join(process.cwd(), 'result');
     
     // 結果ディレクトリが存在しない場合は作成
     if (!fs.existsSync(resultDir)) {
