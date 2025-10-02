@@ -74,9 +74,17 @@ class NextJSCodeReviewer {
 
   private getChangedFiles(): void {
     try {
-      const mergeBase = execSync(`git merge-base HEAD ${this.baseBranch}`, { encoding: 'utf-8' }).trim();
+      // リモートの最新情報を取得
+      console.log('リモートブランチの情報を取得中...');
+      execSync(`git fetch origin ${this.baseBranch}`, { encoding: 'utf-8', stdio: 'pipe' });
+      
+      // リモートブランチとの比較を実行
+      const remoteBranch = `origin/${this.baseBranch}`;
+      const mergeBase = execSync(`git merge-base HEAD ${remoteBranch}`, { encoding: 'utf-8' }).trim();
       const diff = execSync(`git diff --name-only ${mergeBase}...HEAD`, { encoding: 'utf-8' });
       this.changedFiles = diff.trim().split('\n').filter(f => f.length > 0);
+      
+      console.log(`リモートブランチ '${remoteBranch}' との比較を実行しました`);
     } catch (error) {
       console.error(`Git差分の取得に失敗しました。Gitリポジトリ内で実行しているか、${this.baseBranch}ブランチが存在するか確認してください。`);
       throw error;
@@ -421,7 +429,8 @@ class NextJSCodeReviewer {
     let report = `# Next.js コードレビューレポート\n\n`;
     report += `**生成日時:** ${new Date().toISOString()}\n`;
     report += `**現在のブランチ:** ${currentBranch}\n`;
-    report += `**比較対象ブランチ:** ${this.baseBranch}\n`;
+    report += `**比較対象ブランチ:** origin/${this.baseBranch}\n`;
+    report += `**変更されたファイル総数:** ${this.changedFiles.length}\n`;
     report += `**レビュー対象ファイル数:** ${stats.totalFiles}\n`;
     report += `**検出された問題の総数:** ${stats.totalIssues}\n\n`;
     
